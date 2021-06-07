@@ -4,10 +4,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 @Controller
+@RequestMapping
 public class SpaDayController {
+
+
 
     public boolean checkSkinType(String skinType, String facialType) {
         if (skinType.equals("oily")) {
@@ -50,6 +54,11 @@ public class SpaDayController {
     @PostMapping(value="")
     public String spaMenu(@RequestParam String name, @RequestParam String skintype, @RequestParam String manipedi, Model model) {
 
+        HashMap<String, String> profileInfo = new HashMap<>();
+        profileInfo.put("name", name);
+        profileInfo.put("skintype", skintype);
+        profileInfo.put("manipedi", manipedi);
+
         ArrayList<String> facials = new ArrayList<>();
         facials.add("Microdermabrasion");
         facials.add("Hydrofacial");
@@ -63,6 +72,19 @@ public class SpaDayController {
             }
         }
 
+        model.addAttribute("profileInfo", profileInfo);
+        model.addAttribute("appropriateFacials", appropriateFacials);
+
         return "menu";
     }
+
+
+//    @PostMapping("create")
+//    public String createProfile(@RequestParam String name, String skintype, String manipedi) {
+//        profileInfo.put("name", name);
+//        profileInfo.put("skintype", skintype);
+//        profileInfo.put("manipedi", manipedi);
+//        return "redirect:";
+//    }
+
 }

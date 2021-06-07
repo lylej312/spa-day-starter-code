@@ -24,3 +24,28 @@ table {
             padding: 10px;
             text-align: center;
 }
+
+.block {
+    margin: auto;
+    width: 10%;
+    height: 45px;
+}
+
+.red {
+    background-color: red;
+}
+
+.green {
+    background-color: green;
+}
+
+.purple {
+    background-color: purple;
+}
+
+.blocks {
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    height: 150%;
+}
